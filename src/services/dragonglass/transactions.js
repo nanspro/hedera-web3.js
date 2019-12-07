@@ -1,6 +1,6 @@
 import api from "./api";
 
-export const searchTxs = params => {
+export const searchTxs = (params = {}) => {
   api
     .get("transactions", { params })
     .then(response => {
@@ -22,7 +22,7 @@ export const searchTxId = txId => {
     });
 };
 
-export const txObjJson = params => {
+export const txObjJson = (params = {}) => {
   api
     .get("transactions/raw", { params })
     .then(response => {

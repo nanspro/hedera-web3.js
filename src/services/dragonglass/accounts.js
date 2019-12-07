@@ -1,6 +1,6 @@
 import api from "./api";
 
-export const searchAccounts = params => {
+export const searchAccounts = (params = {}) => {
   api
     .get("accounts", { params })
     .then(response => {
@@ -22,7 +22,7 @@ export const accountBalanceAsOf = (accountId, asOfInEpoch) => {
     });
 };
 
-export const accountFiles = (accountId, params) => {
+export const accountFiles = (accountId, params = {}) => {
   api
     .get(`accounts/${accountId}/files`, { params })
     .then(response => {
@@ -33,7 +33,7 @@ export const accountFiles = (accountId, params) => {
     });
 };
 
-export const accountBalanceHistory = (accountId, params) => {
+export const accountBalanceHistory = (accountId, params = {}) => {
   api
     .get(`accounts/${accountId}/intervalBalances`, { params })
     .then(response => {
@@ -44,7 +44,7 @@ export const accountBalanceHistory = (accountId, params) => {
     });
 };
 
-export const accountTxs = (accountId, params) => {
+export const accountTxs = (accountId, params = {}) => {
   api
     .get(`accounts/${accountId}/transactions`, { params })
     .then(response => {
@@ -55,7 +55,7 @@ export const accountTxs = (accountId, params) => {
     });
 };
 
-export const accountTransfers = (accountId, params) => {
+export const accountTransfers = (accountId, params = {}) => {
   api
     .get(`accounts/${accountId}/transfers`, { params })
     .then(response => {
