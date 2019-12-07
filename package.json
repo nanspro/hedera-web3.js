@@ -1,0 +1,12 @@
+{
+  "name": "hedera-web3.js",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "https://github.com/nanspro/hedera-web3.js",
+  "author": "Sounak Pradhan <sounak.98@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "qs": "^6.9.1"
+  }
+}
