@@ -36,7 +36,7 @@ window.onload = function() {
   };
 
   const formatParams = params => {
-    if (params !== null && params !== {}) {
+    if (params !== null) {
       return (
         "?" +
         Object.keys(params)
@@ -49,7 +49,7 @@ window.onload = function() {
     return "";
   };
 
-  hash.searchAccounts = (params = {}) => {
+  hash.searchAccounts = (params = null) => {
     return APIGetRequest(`searchAccounts/${formatParams(params)}`);
   };
 
