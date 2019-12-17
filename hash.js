@@ -11,7 +11,7 @@ window.onload = function() {
   const APIGetRequest = url => {
     const xhr = new this.XMLHttpRequest();
 
-    xhr.open("GET", getUrl(url), true);
+    xhr.open("GET", url, true);
     xhr.setRequestHeader("X-API-KEY", accessKey);
 
     return new Promise((resolve, reject) => {
@@ -25,10 +25,6 @@ window.onload = function() {
 
       xhr.send();
     });
-  };
-
-  const getUrl = url => {
-    return `https://cors-anywhere.herokuapp.com/https://api.dragonglass.me/hedera/api/${url}`;
   };
 
   const formatParams = params => {
@@ -45,23 +41,47 @@ window.onload = function() {
     return "";
   };
 
-  hash.searchAccounts = (params = null) => {
-    return APIGetRequest(`accounts${formatParams(params)}`);
+  const getUrl = (url, params) => {
+    return `https://cors-anywhere.herokuapp.com/https://api.dragonglass.me/hedera/api/${url}${formatParams(
+      params
+    )}`;
   };
 
-  hash.accountBalanceAsOf = data => {};
+  hash.searchAccounts = (params = null) => {
+    return APIGetRequest(getUrl(`accounts`, params));
+  };
 
-  hash.accountFiles = data => {};
+  hash.accountBalanceAsOf = (accountId, asOfInEpoch) => {
+    return APIGetRequest(
+      getUrl(`accounts/${accountId}/balances/${asOfInEpoch}`)
+    );
+  };
 
-  hash.accountBalanceHistory = data => {};
+  hash.accountFiles = (accountId, params = null) => {
+    return APIGetRequest(getUrl(`accouts/${accountId}`, params));
+  };
 
-  hash.accountTxs = data => {};
+  hash.accountBalanceHistory = (accountId, params = null) => {
+    return APIGetRequest(getUrl(`accounts/${accountId}/intervalBalances`, params));
+  };
 
-  hash.accountTransfers = data => {};
+  hash.accountTxs = (accountId, params = null) => {
+    return APIGetRequest(getUrl(`accounts/${accountId}/transactions`, params));
+  };
 
-  hash.searchTxs = data => {};
+  hash.accountTransfers = (accountId, params = null) => {
+    return APIGetRequest(getUrl(`accounts/${accountId}/transfers`, params));
+  };
 
-  hash.searchTxId = data => {};
+  hash.searchTxs = (params = {}) => {
+    return APIGetRequest(getUrl(`transactions`, params));
+  };
 
-  hash.txObjJson = data => {};
+  hash.searchTxId = txId => {
+    return APIGetRequest(getUrl(`transactions/${txId}`));
+  };
+
+  hash.txObjJson = (params = {}) => {
+    return APIGetRequest(getUrl(`transactions/raw`, params));
+  };
 };
