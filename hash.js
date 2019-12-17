@@ -27,12 +27,8 @@ window.onload = function() {
     });
   };
 
-  const getUrl = (url, params = null) => {
-    if (params === null) {
-      return `https://cors-anywhere.herokuapp.com/https://api.dragonglass.me/hedera/api/${url}`;
-    } else {
-      return `https://cors-anywhere.herokuapp.com/https://api.dragonglass.me/hedera/api/${url}?${params}`;
-    }
+  const getUrl = url => {
+    return `https://cors-anywhere.herokuapp.com/https://api.dragonglass.me/hedera/api/${url}`;
   };
 
   const formatParams = params => {
