@@ -46,7 +46,7 @@ window.onload = function() {
   };
 
   hash.searchAccounts = (params = null) => {
-    return APIGetRequest(`searchAccounts${formatParams(params)}`);
+    return APIGetRequest(`accounts${formatParams(params)}`);
   };
 
   hash.accountBalanceAsOf = data => {};
