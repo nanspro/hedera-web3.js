@@ -13,26 +13,19 @@ window.onload = function() {
 
   hash.searchAccounts = data => {
     const xhr = new this.XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        console.log(xhr.responseText);
-      }
-    };
+
     xhr.open("GET", getUrl("accounts"), true);
     xhr.setRequestHeader("X-API-KEY", "974d4207-51e0-3d73-8e20-4d5952078c47");
-    xhr.send();
 
-    // return new Promise((resolve, reject) => {
-    //   Http.onreadystatechange = function() {
-    //     if (Http.readyState == 4 && Http.status == 200) {
-    //       resolve(Http.response);
-    //     } else if (Http.readyState == 4) {
-    //       reject(Http.response);
-    //     }
-    //   };
+    return new Promise((resolve, reject) => {
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          resolve(xhr.response);
+        }
+      };
 
-    //   Http.send(null);
-    // });
+      xhr.send();
+    });
   };
 
   hash.accountBalanceAsOf = data => {};
