@@ -5,24 +5,21 @@ window.onload = function() {
 
   const getUrl = (url, params = null) => {
     if (params === null) {
-      return `https://api.dragonglass.me/hedera/api/${url}`;
+      return `https://cors-anywhere.herokuapp.com/https://api.dragonglass.me/hedera/api/${url}`;
     } else {
-      return `https://api.dragonglass.me/hedera/api/${url}?${params}`;
+      return `https://cors-anywhere.herokuapp.com/https://api.dragonglass.me/hedera/api/${url}?${params}`;
     }
   };
 
   hash.searchAccounts = data => {
-    const Http = new this.XMLHttpRequest();
-    Http.open("GET", getUrl("accounts"), true);
-    Http.setRequestHeader("X-API-KEY", "974d4207-51e0-3d73-8e20-4d5952078c47");
-
-    Http.onreadystatechange = function() {
-      if (Http.readyState == 4 && Http.status == 200) {
-        console.log(Http.responseText);
+    const xhr = new this.XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log(xhr.responseText);
       }
     };
-
-    Http.send();
+    xhr.setRequestHeader("X-API-KEY", "974d4207-51e0-3d73-8e20-4d5952078c47");
+    xhr.open("GET", getUrl("accounts"), true);
 
     // return new Promise((resolve, reject) => {
     //   Http.onreadystatechange = function() {
