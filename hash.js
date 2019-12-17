@@ -4,13 +4,16 @@ window.onload = function() {
   window.hash = hash;
   var accessKey = "";
 
-  hash.setAccessKey = (
-    _accessKey = "974d4207-51e0-3d73-8e20-4d5952078c47"
-  ) => {
+  hash.setAccessKey = (_accessKey = "974d4207-51e0-3d73-8e20-4d5952078c47") => {
     accessKey = _accessKey;
   };
 
-  const getResponsePromise = xhr => {
+  const APIGetRequest = url => {
+    const xhr = new this.XMLHttpRequest();
+
+    xhr.open("GET", getUrl(url), true);
+    xhr.setRequestHeader("X-API-KEY", accessKey);
+
     return new Promise((resolve, reject) => {
       xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -32,12 +35,22 @@ window.onload = function() {
     }
   };
 
-  hash.searchAccounts = data => {
-    const xhr = new this.XMLHttpRequest();
+  const formatParams = params => {
+    if (params !== null && params !== {}) {
+      return (
+        "?" +
+        Object.keys(params)
+          .map(function(key) {
+            return key + "=" + encodeURIComponent(params[key]);
+          })
+          .join("&")
+      );
+    }
+    return "";
+  };
 
-    xhr.open("GET", getUrl("accounts"), true);
-    xhr.setRequestHeader("X-API-KEY", accessKey);
-    return getResponsePromise(xhr);
+  hash.searchAccounts = (params = {}) => {
+    return APIGetRequest(`searchAccounts/${formatParams(params)}`);
   };
 
   hash.accountBalanceAsOf = data => {};
