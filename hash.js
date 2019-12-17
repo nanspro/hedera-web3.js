@@ -41,7 +41,7 @@ window.onload = function() {
     return "";
   };
 
-  const getUrl = (url, params) => {
+  const getUrl = (url, params = null) => {
     return `https://cors-anywhere.herokuapp.com/https://api.dragonglass.me/hedera/api/${url}${formatParams(
       params
     )}`;
@@ -62,7 +62,9 @@ window.onload = function() {
   };
 
   hash.accountBalanceHistory = (accountId, params = null) => {
-    return APIGetRequest(getUrl(`accounts/${accountId}/intervalBalances`, params));
+    return APIGetRequest(
+      getUrl(`accounts/${accountId}/intervalBalances`, params)
+    );
   };
 
   hash.accountTxs = (accountId, params = null) => {
