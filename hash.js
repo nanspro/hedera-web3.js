@@ -3,7 +3,7 @@ let hash = {};
 window.onload = function() {
   window.hash = hash;
 
-  const returnResponse = (xhr) => {
+  const getResponsePromise = (xhr) => {
     return new Promise((resolve, reject) => {
       xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -28,7 +28,7 @@ window.onload = function() {
 
     xhr.open("GET", getUrl("accounts"), true);
     xhr.setRequestHeader("X-API-KEY", "974d4207-51e0-3d73-8e20-4d5952078c47");
-    returnResponse(xhr);
+    return getResponsePromise(xhr);
   };
 
   hash.accountBalanceAsOf = data => {};
