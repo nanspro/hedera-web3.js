@@ -18,8 +18,9 @@ window.onload = function() {
         console.log(xhr.responseText);
       }
     };
-    xhr.setRequestHeader("X-API-KEY", "974d4207-51e0-3d73-8e20-4d5952078c47");
     xhr.open("GET", getUrl("accounts"), true);
+    xhr.setRequestHeader("X-API-KEY", "974d4207-51e0-3d73-8e20-4d5952078c47");
+    xhr.send();
 
     // return new Promise((resolve, reject) => {
     //   Http.onreadystatechange = function() {
