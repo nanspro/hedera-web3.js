@@ -38,7 +38,7 @@ window.onload = function() {
   const formatParams = params => {
     if (params !== null && Object.keys(params).length !== 0) {
       return (
-        "?" +
+        "/?" +
         Object.keys(params)
           .map(function(key) {
             return key + "=" + encodeURIComponent(params[key]);
@@ -50,7 +50,7 @@ window.onload = function() {
   };
 
   hash.searchAccounts = (params = null) => {
-    return APIGetRequest(`searchAccounts/${formatParams(params)}`);
+    return APIGetRequest(`searchAccounts${formatParams(params)}`);
   };
 
   hash.accountBalanceAsOf = data => {};
