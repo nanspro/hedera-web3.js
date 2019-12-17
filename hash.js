@@ -15,6 +15,8 @@ window.onload = function() {
       xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
           resolve(xhr.response);
+        } else if (xhr.status != 200) {
+          reject(xhr.statusText);
         }
       };
 
