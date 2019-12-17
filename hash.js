@@ -36,7 +36,7 @@ window.onload = function() {
   };
 
   const formatParams = params => {
-    if (params !== null) {
+    if (params !== null && Object.keys(params).length !== 0) {
       return (
         "?" +
         Object.keys(params)
