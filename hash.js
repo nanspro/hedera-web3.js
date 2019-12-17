@@ -4,7 +4,7 @@ window.onload = function() {
   window.hash = hash;
   var accessKey = "";
 
-  const setAccessKey = (
+  hash.setAccessKey = (
     _accessKey = "974d4207-51e0-3d73-8e20-4d5952078c47"
   ) => {
     accessKey = _accessKey;
