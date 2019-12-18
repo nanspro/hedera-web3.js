@@ -33,7 +33,7 @@ Just go ahead and clone https://github.com/nanspro/hedera-web3.js to get started
 $ git clone https://github.com/nanspro/hedera-web3.js
 $ cd hedera-web3.js
 # Set env ACCESS_KEY
-$ export ACCESS_KEY = '<YOUR_ACCESS_KEY>'
+$ export ACCESS_TOKEN = '<YOUR_ACCESS_TOKEN>'
 # Run index.js to see all transactions of a sample account '0.0.27992'
 
 $ yarn
@@ -45,9 +45,20 @@ Our api exports many methods such as:
 * `accountBalanceHistory`
 * `searchAccounts`
 * `searchTxs`
+* `searchContracts`
 
 You can edit `index.js` to import whatever api you require and then test it.
 
+Examples:
+
+```js
+import { accountTxs, searchAccounts } from "./services/dragonglass/accounts";
+import { searchContracts } from "./services/dragonglass/contracts";
+
+accountTxs("0.0.27992");
+searchAccounts("0.0.27992");
+searchContracts("0.0.28503");
+```
 
 **Using it with composer**
 
