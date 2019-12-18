@@ -1,6 +1,7 @@
 # hedera-web3.js
 
-A library to make it easy for users to build web3 apps on top of hedera
+A library to make it easy for users to build web3 apps on top of hedera.
+
 For more info checkout https://dailystamp.io/post/5df9a4c4a671e8434b0a612b
 
 ## Composer
