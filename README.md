@@ -41,11 +41,48 @@ $ yarn
 $ yarn start
 ```
 
-Our api exports many methods such as:
-* `accountBalanceHistory`
-* `searchAccounts`
-* `searchTxs`
-* `searchContracts`
+### Account APIs
+
+Following methods are exported for account related queries
+
+* **accountBalanceHistory** : This api can be used to get account balance at any given time. {accountID} e.g 0.0.9838 (asOfInEpoch} in millisecond e.g. 1514764800000
+
+* **searchAccounts** : This api can be used to search accounts based on provided query params The results are paginated and are sorted on consensusTime desc
+
+* **accountTxs** : This api returns all transactions where the accountID was involved. Returns up to a maximum of 10000 accounts only. {accountID} e.g 0.0.9838
+
+* **accountFiles** : This api returns list of files for the account. Returns up to a maximum of the last 10000 accounts only. {accountID} e.g 0.0.9838.
+
+* **accountBalanceAsOf** : This api can be used to get account balance at any given time. {accountID} e.g 0.0.9838 (asOfInEpoch} in millisecond e.g. 1514764800000
+
+* **accountTransfers** : This api returns all transfers to or from an accountID. Returns up to a maximum of 10000 accounts only. {accountID} e.g 0.0.9838
+
+
+### Transaction APIs
+
+Following methods are exported for querying txs
+
+* **searchTxs** : This api can be used to search transactions based on provided query params The results are paginated and are sorted on consensusTime desc. Different query parameters would use AND operator to search. Same query params expecting multiple values will use OR operator. Fields expecting multiple parameters can be provided using comma seperated value. Returns up to a maximum of the last 10000 transaction only
+
+
+* **searchTxId** : "transactionID" is provided as part of transaction response.
+_Please note the transaction ID although generated from Hedera transaction ID is actually generated concatinating startDate and payerID_
+
+* **txObjJson** : To get raw transaction as json object
+
+
+### Contract APIs
+
+Following methods are exported for querying contracts
+
+* **contractBalanceAsOf** : This api can be used to get account balance at any given time. {contractID} e.g 0.0.24660 (asOfInEpoch} in millisecond e.g. 1514764800000
+
+* **searchContracts** : This api can be used to search contracts based on provided query params The results are paginated and are sorted on consensusTime desc .
+
+* **contractCallCount** : Returns the # of calls made to a contract. {contractID} e.g 0.0.24660
+
+* **contractHistory** : This api returns account balance histogram for a given time.
+_Please note that interval is a required field. Without it the api will return Bad Request. {contractID} e.g 0.0.24660_
 
 You can edit `index.js` to import whatever api you require and then test it.
 
@@ -59,6 +96,9 @@ accountTxs("0.0.27992");
 searchAccounts("0.0.27992");
 searchContracts("0.0.28503");
 ```
+
+**_Note: To know what additional params you can pass to these apis checkout https://app.dragonglass.me/hedera/apiview_**
+
 
 **Using it with composer**
 
